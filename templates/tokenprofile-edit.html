@@ -1,0 +1,72 @@
+<form class="editable tokenprofile-form">
+    {{#if canEditProfile}}
+    <fieldset class="tokenprofile-form-meta">
+        <div id="top">
+            <span class="profile-select left">
+                <input type="checkbox" name="enabled" id="enabled" {{checked enabled}} {{disabled noProfile}} data-tooltip="TokenProfile.tt.enabled" />
+                <label for="id" data-tooltip="TokenProfile.tt.profiles">{{localize "TokenProfile.profile.label"}}</label>
+                {{{profileSelectionHTML}}}
+                <button type="button" id="add"  data-tooltip="TokenProfile.tt.add"><i class="fas fa-file-plus"></i></button>
+                <button type="button" id="copy" {{disabled noProfile}} data-tooltip="TokenProfile.tt.copy"><i class="fas fa-copy"></i></button>
+                <button type="button" id="rename" {{disabled noProfile}} data-tooltip="TokenProfile.tt.rename"><i class="fas fa-i-cursor"></i></button>
+                <button type="button" id="delete" {{disabled noProfile}} data-tooltip="TokenProfile.tt.remove"><i class="fas fa-trash-xmark"></i></button>
+            </span>
+            <span class="right">
+                <input type="checkbox" name="randomize" id="randomize" {{checked randomize}} {{disabled noProfile}} data-tooltip="TokenProfile.tt.random" />
+                <label for="randomize" data-tooltip="TokenProfile.tt.random">{{localize "TokenProfile.randomize.label"}}</label>
+                <button type="button" id="post" {{disabled hasNoParagraphs}}  data-tooltip="TokenProfile.tt.postp"><i class="fas fa-message"></i></button>
+            </span>
+        </div>
+    </fieldset>
+    {{/if}}
+    {{#if canSeeProfile}}
+    <article>
+        {{#each paragraphs}}
+        <fieldset id="pid-{{this.id}}" data-pid="{{this.id}}">
+            {{#if ../canEditProfile}}
+            <div class="controls">
+                <span class="controls-left">
+                    {{#if ../taggerEnabled}}
+                    <div>
+                        <label for="{{concat 'paragraphs.' this.id '.tags_self'}}" data-tooltip="TokenProfile.tt.tags">{{localize "TokenProfile.tags.send"}}</label>
+                        <input class="tags" type="text" name="{{concat 'paragraphs.' this.id '.tags_self'}}" placeholder="" spellcheck="false" value="{{tags_self}}" data-tooltip="TokenProfile.tt.tags" {{{../tagNameFilter}}} />
+                    </div>
+                    <div>
+                        <label for="{{concat 'paragraphs.' this.id '.tags_viewer'}}" data-tooltip="TokenProfile.tt.tagr">{{localize "TokenProfile.tags.recv"}}</label>
+                        <input class="tags" type="text" name="{{concat 'paragraphs.' this.id '.tags_viewer'}}" placeholder="" spellcheck="false" value="{{tags_viewer}}" data-tooltip="TokenProfile.tt.tagr" {{{../tagNameFilter}}} />
+                    </div>
+                    {{/if}}
+                </span>
+                <span class="visibility-select" data-tooltip="TokenProfile.tt.vis">
+                    <label for="{{concat 'paragraphs.' this.id '.visibility'}}">{{localize "TokenProfile.visibility.label"}}</label>
+                    <select name="{{concat 'paragraphs.' this.id '.visibility'}}">
+                        {{selectOptions ../visibilityOptions selected=this.visibility}}
+                    </select>
+                </span>
+                <button type="button" id="p-up" data-pid="{{this.id}}" {{disabled @first}} data-tooltip="TokenProfile.tt.move"><i class="fas fa-up"></i></button>
+                <button type="button" id="p-down" data-pid="{{this.id}}" {{disabled @last}} data-tooltip="TokenProfile.tt.move"><i class="fas fa-down"></i></button>
+                <button type="button" id="p-del" data-pid="{{this.id}}" data-tooltip="TokenProfile.tt.pdel"><i class="fas fa-trash-xmark"></i></button>
+                <button type="button" id="p-post" data-pid="{{this.id}}" data-tooltip="TokenProfile.tt.ppost"><i class="fas fa-message"></i></button>
+            </div>
+            {{/if}}
+            {{#if ../canEditProfile}}
+            <prose-mirror name="{{concat 'paragraphs.' this.id '.text'}}" value="{{this.text}}"
+                toggled="true">
+                {{{this.textEnriched}}}
+            </prose-mirror>
+            {{else}}
+            {{{this.textEnriched}}}
+            {{/if}}
+        </fieldset>
+        {{/each}}
+        {{#if canEditProfile}}
+        <div class="controls">
+            <button type="button" id="p-add" {{disabled noProfile}}><i class="fas fa-plus-large"></i></button>
+        </div>
+        {{/if}}
+    </article>
+    {{/if}}
+    {{#if tutorial}}
+    <div id="tutorial">{{{tutorial}}}</div>
+    {{/if}}
+</form>

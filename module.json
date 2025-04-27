@@ -1,0 +1,37 @@
+{
+  "id": "tokenprofile",
+  "title": "Token Profile",
+  "description": "A module for creating profiles that can be displayed as token tooltips or in chat.",
+  "version": "#{VERSION}#",
+  "compatibility": {
+    "minimum": 12,
+    "verified": 12
+  },
+  "authors": [
+    {
+      "name": "mhilbrunner",
+      "url": "https://github.com/mhilbrunner"
+    }
+  ],
+  "esmodules": [
+    "scripts/tokenprofile.js"
+  ],
+  "styles": [
+    "styles/tokenprofile.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "German",
+      "path": "languages/de.json"
+    }
+  ],
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#"
+}

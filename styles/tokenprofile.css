@@ -1,0 +1,105 @@
+.tpt-container {
+    text-align: left;
+    max-height: 40vh;
+    overflow: auto;
+}
+
+/* System specific tooltip overrides */
+.tpt-swade {
+    a.content-link:not(.swade-core a.content-link),
+    a.inline-roll:not(.swade-core a.inline-roll) {
+        color: var(--color-text-dark-primary);
+    }
+}
+
+.tokenprofile .tokenprofile-form {
+    height: 100%;
+    #tutorial p {
+        text-align: center;
+    }
+
+    .profile-select #enabled {
+        margin-left: 0;
+    }
+
+    .tokenprofile-form-meta button, article .controls button {
+        height: 1lh;
+        width: 1lh;
+        margin-bottom: 1px;
+        vertical-align: middle;
+        text-align: center;
+
+        i {
+            margin-right: 0;
+        }
+    }
+
+    .tokenprofile-form-meta {
+        display: block;
+        border: none;
+
+        input,
+        label,
+        span {
+            vertical-align: middle;
+        }
+
+        input[type="text"] {
+            width: unset;
+        }
+
+        .right {
+            float: right;
+        }
+
+        #bottom {
+            margin-top: 5px;
+        }
+
+        .tp-psel-enabled {
+            color: green;
+        }
+    }
+
+    fieldset {
+        margin-bottom: 5px;
+    }
+
+    article {
+        .controls {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin: 5px 0;
+        }
+        .controls-left {
+            width: 45%;
+            margin-right: auto;
+            div {
+                width: 50%;
+                float: left;
+            }
+            .tags {
+                width: 55%;
+            }
+        }
+    }
+}
+
+.tokenprofile .tokenprofile-form fieldset {
+    .editor {
+        min-height: 4lh;
+        height: 90%;
+        overflow: unset;
+
+        .editor-content {
+            position: unset;
+            user-select: text;
+            overflow: unset;
+        }
+
+        .editor-menu {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    }
+}
