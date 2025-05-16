@@ -32,7 +32,7 @@ If your needs are less complex or you want something simpler, consider these:
 
 - [GM Notes](https://foundryvtt.com/packages/gm-notes/) can similarly attach notes to actors – and other documents, like items. Token Profile has an option to display GM Note notes for actors to GMs.
 - [Illandril's Token Tooltips](https://foundryvtt.com/packages/illandril-token-tooltips) displays tooltips for tokens, focusing on stats and data, like HP or attributes.
-- [Token Note Hover](https://foundryvtt.com/packages/token-note-hover) is similar to the above in some ways, but also to Token Profile: it integrates with systems and can display things like biographies or notes if the systems offer those. However, that also somewhats limits the notes down to what the system offers.
+- [Token Note Hover](https://foundryvtt.com/packages/token-note-hover) is similar to the above in some ways, but also to Token Profile: it integrates with systems and can display things like biographies or notes if the systems offer those. However, that also somewhat limits the notes down to what the system offers.
 - [Visual Active Effects](https://foundryvtt.com/packages/visual-active-effects) is super useful to have a "buff bar" for Active Effects. Combined with a macro to attach a freeform effect with some name to a token, this can be enough to quickly jot down a line or two and attach it to a token, if that is all thats needed.
 - Also, some systems already feature (more or less extensive) note fields. And there's always journals.
 
@@ -49,6 +49,24 @@ Use Foundry's packager manager or use this URL with its install from manifest UR
 If you want to install a specific release, browse the available versions for links to version-specific `module.json` files:
 
 <https://github.com/mhilbrunner/tokenprofile/releases>
+
+## API and integrations
+
+The API lives at `game.modules.get('tokenprofile').api`. As an example, `game.modules.get('tokenprofile')?.api?.openEditor(game.canvas.tokens.controlled[0])` opens the profile editor for the actor of the currently controlled token.
+
+**Module** integrations that are (optionally) available out of the box:
+
+- [Tagger](https://foundryvtt.com/packages/tagger) tags can be checked both for the viewer and the actor the profile belongs to.
+- [Perceptive](https://foundryvtt.com/packages/perceptive) vision layers can be used like the Tagger tags above, e.g. to make some profile's or paragraph's information only visible with the right vision type (whether that's darkvision or having an AR-enabled device).
+- [GM Notes](https://foundryvtt.com/packages/gm-notes/) can be shown in tooltips for GMs.
+
+**Hooks:**
+- `tokenprofile.tooltip` is called whenever the module is about to show a tooltip, its `data` parameter is a dictionary containing the `token` the tooltip is shown for and the `content` of the tooltip, which can be modified; if set to empty, the tooltip won't be shown.
+- `tokenprofile.getprofilefordisplay` is called when determining which profile to display (e.g. in a tooltip). It gets passed a `hookData` dictionary containing the following:
+  - `target` (the actor or token the profile belongs to)
+  - `viewer` (the actor or token that is viewing the profile, `undefined` if not set/determined or this is a post to chat)
+  - `profiles` (all available profiles of the `target`)
+  - `selected` (the output parameter: profile data to display, `undefined` by default; if set in the hook, it overrides the normal selection logic).
 
 ## Caveats
 
