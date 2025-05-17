@@ -56,6 +56,7 @@ The API lives at `game.modules.get('tokenprofile').api`. As an example, `game.mo
 
 **Module** integrations that are (optionally) available out of the box:
 
+- [Anonymous](https://foundryvtt.com/packages/anonymous) will be used to get (and anonymize) actor names if available.
 - [Tagger](https://foundryvtt.com/packages/tagger) tags can be checked both for the viewer and the actor the profile belongs to.
 - [Perceptive](https://foundryvtt.com/packages/perceptive) vision layers can be used like the Tagger tags above, e.g. to make some profile's or paragraph's information only visible with the right vision type (whether that's darkvision or having an AR-enabled device).
 - [GM Notes](https://foundryvtt.com/packages/gm-notes/) can be shown in tooltips for GMs.
