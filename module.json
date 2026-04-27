@@ -4,7 +4,7 @@
   "description": "A module for creating profiles that can be displayed as token tooltips or in chat.",
   "version": "#{VERSION}#",
   "compatibility": {
-    "minimum": 12,
+    "minimum": 13,
     "verified": 13
   },
   "authors": [

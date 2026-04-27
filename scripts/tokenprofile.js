@@ -692,54 +692,20 @@ class TokenProfileEditor extends FormApplication {
 
     static _attachHeaderButton(app, buttons) {
         if (!game.settings.get('tokenprofile', 'headerbutton.enabled')) return;
-        if (!(app instanceof ActorSheet)) return;
-        if (!(app.document instanceof foundry.abstract.Document)) return;
         if (!TokenProfileEditor.canSeeHeaderButton(app.document)) return;
 
         const button = {
-            tooltip: game.i18n.localize('TokenProfile.label'),
+            label: game.i18n.localize('TokenProfile.label'),
             class: 'tokenprofile-open',
-            get icon() {
-                let notes = app.document.getFlag('tokenprofile', 'notes');
-                return `fas ${notes ? 'fa-address-card' : 'fa-address-card'}`;
-            },
-            onclick: (ev) => {
-                TokenProfileEditor.open(app.document);
-            },
-        };
-        buttons.unshift(button);
+            icon: 'fas fa-address-card',
+            onClick: () => { TokenProfileEditor.open(app.document); },
+        }
+        buttons?.push(button);
     }
 
     static open(doc) {
         if (!doc || !TokenProfileEditor.canSeeHeaderButton(doc)) return;
         new TokenProfileEditor(doc).render(true);
-    }
-
-    static _updateHeaderButton(app, [elem], options) {
-        if (!game.settings.get('tokenprofile', 'headerbutton.enabled')) return;
-        if (!(app instanceof ActorSheet)) return;
-        if (!(app.document instanceof foundry.abstract.Document)) return;
-        if (!TokenProfileEditor.canSeeHeaderButton(app.document)) return;
-
-        let button = elem?.closest('.window-app')?.querySelector('.tokenprofile-open');
-        if (!button) return;
-
-        let delay = 150;
-        setTimeout(async () => {
-            const profiles = await TokenProfile.getProfiles(app.document);
-            if (!game.settings.get('tokenprofile', 'headerbutton.color') || !profiles || !Object.keys(profiles).length) {
-                button.style.color = '';
-                return;
-            }
-
-            const enabled = await TokenProfile.getVisibleProfiles(app.document, undefined);
-            if (enabled && Object.keys(enabled).length) {
-                button.style.color = 'var(--palette-success, green)';
-                return;
-            }
-
-            button.style.color = 'var(--palette-warning, yellow)';
-        }, delay);
     }
 
     async canEditProfile(id) {
@@ -1031,11 +997,7 @@ class TokenProfileEditor extends FormApplication {
     }
 
     static registerHooks() {
-        const watchedHooks = ['ActorSheet'];
-        watchedHooks.forEach(hook => {
-            Hooks.on(`get${hook}HeaderButtons`, TokenProfileEditor._attachHeaderButton);
-            Hooks.on(`render${hook}`, TokenProfileEditor._updateHeaderButton);
-        });
+        Hooks.on('getHeaderControlsActorSheetV2', TokenProfileEditor._attachHeaderButton);
     }
 }
 
