@@ -1,7 +1,9 @@
-![](https://img.shields.io/badge/Foundry-v13-informational)
-![Latest Release Download Count](https://img.shields.io/github/downloads/mhilbrunner/tokenprofile/latest/module.zip)
+![Compatible Foundry Version](https://img.shields.io/badge/Foundry-v14-informational)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mhilbrunner/tokenprofile?label=Latest+Release)
 ![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftokenprofile&colorB=4aa94a)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub Downloads All Releases](https://img.shields.io/github/downloads/mhilbrunner/tokenprofile/total?label=Downloads+(Total))
+![GitHub Downloads Release](https://img.shields.io/github/downloads/mhilbrunner/tokenprofile/latest/total?label=Downloads+(Latest))
+![GitHub Release Date](https://img.shields.io/github/release-date/mhilbrunner/tokenprofile?label=Release+Date)
 
 # Token Profile
 
@@ -11,9 +13,13 @@ A [FoundryVTT](https://foundryvtt.com/) module for creating actor 'profiles' tha
 
 ## Features
 
-Supports multiple profiles and multiple paragraphs per profile, with easy switching and ordering. Each profile can be quickly enabled or disabled, with either the first or a randomized profile being shown depending on settings.
+Supports multiple profiles and multiple paragraphs per profile, with easy switching and ordering.
+Each profile can be quickly enabled or disabled, with either the first or a randomized profile being shown depending on settings.
 
-Each paragraph has separate visibility settings and can be shown depending on token ownership level, vision of the viewing player/token, [Tagger](https://foundryvtt.com/packages/tagger) tags, [Perceptive](https://foundryvtt.com/packages/perceptive) vision layers and if that isn't enough, there are some [hooks](https://foundryvtt.wiki/en/development/api/hooks) for macro or module extensibility.
+Each paragraph has separate visibility settings and can be shown depending on token ownership level,
+vision of the viewing player/token, [Tagger](https://foundryvtt.com/packages/tagger) tags,
+[Perceptive](https://foundryvtt.com/packages/perceptive) vision layers and if that isn't enough,
+there are some [hooks](https://foundryvtt.wiki/en/development/api/hooks) for macro or module extensibility.
 
 Optionally, [GM Notes](https://foundryvtt.com/packages/gm-notes/) can be shown in tooltips for GMs as well.
 
@@ -26,7 +32,9 @@ Optionally, [GM Notes](https://foundryvtt.com/packages/gm-notes/) can be shown i
 
 ## Alternatives
 
-Token Profile was born out of the need to keep multiple notes (e.g. player vs. GM) on actors, display them as tooltips and post them to chat, and have fine-grained permissions on them. (This description should be visible to everyone, this one to everyone with this Tagger tag, and this one only to the GM.)
+Token Profile was born out of the need to keep multiple notes (e.g. player vs. GM) on actors,
+display them as tooltips and post them to chat, and have fine-grained permissions on them.
+(This description should be visible to everyone, this one to everyone with this Tagger tag, and this one only to the GM.)
 
 If your needs are less complex or you want something simpler, consider these:
 
@@ -38,7 +46,8 @@ If your needs are less complex or you want something simpler, consider these:
 
 ## Credits
 
-This module takes heavy inspiration from various MMO roleplaying flag addons and the Foundry modules mentioned above. Those are great modules, check them out!
+This module takes heavy inspiration from various MMO roleplaying flag addons and the Foundry modules mentioned above.
+Those are great modules, check them out!
 
 ## Installation
 
@@ -52,7 +61,9 @@ If you want to install a specific release, browse the available versions for lin
 
 ## API and integrations
 
-The API lives at `game.modules.get('tokenprofile').api`. As an example, `game.modules.get('tokenprofile')?.api?.openEditor(game.canvas.tokens.controlled[0])` opens the profile editor for the actor of the currently controlled token.
+The API lives at `game.modules.get('tokenprofile').api`.
+As an example, `game.modules.get('tokenprofile')?.api?.openEditor(game.canvas.tokens.controlled[0])`
+opens the profile editor for the actor of the currently controlled token.
 
 **Module** integrations that are (optionally) available out of the box:
 
@@ -71,7 +82,9 @@ The API lives at `game.modules.get('tokenprofile').api`. As an example, `game.mo
 
 ## Caveats
 
-Keep in mind all data is stored in actor [flags](https://foundryvtt.wiki/en/development/api/flags). Maybe don't write the next Lord of the Rings trilogy in a profile and then make tons of copies of that actor. Or do it, who am I to judge.
+Keep in mind all data is stored in actor [flags](https://foundryvtt.wiki/en/development/api/flags).
+Maybe don't write the next Lord of the Rings trilogy in a profile and then make tons of copies of that actor.
+Or do it, who am I to judge.
 
 ## License
 
