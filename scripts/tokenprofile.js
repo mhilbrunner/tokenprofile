@@ -543,10 +543,10 @@ class TokenProfile {
 
     static async confirmDeletion() {
         return await DialogV2.confirm({
-            window: { title: 'Confirm' },
+            window: { title: game.i18n.localize('COMMON.Confirm') },
             content: game.i18n.localize('TokenProfile.confirmdelete'),
             yes: {
-                label: 'Delete',
+                label: game.i18n.localize('COMMON.Delete'),
             },
             modal: true,
             rejectClose: false,
